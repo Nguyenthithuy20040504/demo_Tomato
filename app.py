@@ -104,7 +104,7 @@ if uploaded_file is not None:
             confidence = float(np.max(prediction)) * 100
 
         st.markdown(
-            f"<div class='result-box'>✅ <strong>{predicted_class}</strong><br/>🎯 Độ chính xác: {confidence:.2f}%</div>",
+            f"<div class='result-box'>✅Kết quả: <strong>{predicted_class}</strong><br/>🎯 Độ chính xác: {confidence:.2f}%</div>",
             unsafe_allow_html=True
         )
 else:
