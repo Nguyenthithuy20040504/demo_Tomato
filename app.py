@@ -21,7 +21,7 @@ st.markdown("""
              font-size: 40px;
     text-align: center;
     color: white;
-    background-color: 	#e2f7e1;  /* Màu xanh dịu mắt */
+    background-color: 	#dcedc8;  /* Màu xanh dịu mắt */
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 30px;
