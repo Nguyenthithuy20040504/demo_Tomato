@@ -6,8 +6,7 @@ from PIL import Image
 import os
 import gdown
 import json
-from tensorflow.keras.utils import CustomObjectScope
-from tensorflow.keras.layers import Activation
+
 
 # === Thiết lập cấu hình trang ===
 st.set_page_config(
@@ -66,7 +65,7 @@ if not os.path.exists(MODEL_PATH):
         gdown.download(URL, MODEL_PATH, quiet=False)
 
 # === Load model và class indices ===
-with CustomObjectScope({'custom_activation': Activation}):
+
     model = tf.keras.models.load_model('MODEL_PATH')
 with open(CLASS_INDEX_PATH) as f:
     class_indices = json.load(f)
