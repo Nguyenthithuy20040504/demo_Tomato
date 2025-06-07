@@ -68,6 +68,14 @@ st.markdown("""
     /* Màu chữ main area */
     [data-testid="stAppViewContainer"] * {
         color: #222222;
+    }
+    div[data-testid="stFileUploader"] {
+            background-color: #b8e0d2;  /* nền xanh nhạt */
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #90caf9;
+            color: #000000;  /* chữ đen */
+        }
     </style>
 """, unsafe_allow_html=True)
 
