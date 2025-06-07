@@ -53,29 +53,6 @@ st.markdown("""
         .stButton > button:hover {
             background-color: #c82333;
         }
-         /* Màu nền sidebar */
-    [data-testid="stSidebar"] {
-        background-color: #b8e0d2;
-    }
-    /* Màu chữ sidebar */
-    [data-testid="stSidebar"] * {
-        color: #333333;
-    }
-    /* Màu nền main area */
-    [data-testid="stAppViewContainer"] {
-        background-color: #f5f5f5;
-    }
-    /* Màu chữ main area */
-    [data-testid="stAppViewContainer"] * {
-        color: #222222;
-    }
-    div[data-testid="stFileUploader"] {
-            background-color: #b8e0d2;  /* nền xanh nhạt */
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #90caf9;
-            color: #000000;  /* chữ đen */
-        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -131,4 +108,4 @@ if uploaded_file is not None:
             unsafe_allow_html=True
         )
 else:
-    st.info("Vui lòng tải ảnh trong sidebar để bắt đầu dự đoán.") 
+    st.info("Vui lòng tải ảnh trong sidebar để bắt đầu dự đoán.")
