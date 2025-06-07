@@ -53,6 +53,21 @@ st.markdown("""
         .stButton > button:hover {
             background-color: #c82333;
         }
+         /* Màu nền sidebar */
+    [data-testid="stSidebar"] {
+        background-color: #b8e0d2;
+    }
+    /* Màu chữ sidebar */
+    [data-testid="stSidebar"] * {
+        color: #333333;
+    }
+    /* Màu nền main area */
+    [data-testid="stAppViewContainer"] {
+        background-color: #f5f5f5;
+    }
+    /* Màu chữ main area */
+    [data-testid="stAppViewContainer"] * {
+        color: #222222;
     </style>
 """, unsafe_allow_html=True)
 
