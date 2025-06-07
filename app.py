@@ -18,10 +18,13 @@ st.set_page_config(
 st.markdown("""
     <style>
         .title {
-            font-size: 40px;
-            text-align: center;
-            color: #1e3d59;
-            margin-bottom: 30px;
+             font-size: 40px;
+    text-align: center;
+    color: white;
+    background-color: 	#e2f7e1;  /* Màu xanh dịu mắt */
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
         }
         .result-box {
             text-align: center;
