@@ -204,8 +204,8 @@ if uploaded_file is not None:
     )
 
     # Hiển thị thông tin bệnh nếu có
-if predicted_class in disease_info:
-    st.info(f"📝 **Thông tin về bệnh:**\n{disease_info[predicted_class]}")
+    if predicted_class in disease_info:
+        st.info(f"📝 **Thông tin về bệnh:**\n{disease_info[predicted_class]}")
 else:
     st.info("📤 Vui lòng tải lên một ảnh trong thanh bên để bắt đầu.")
 
