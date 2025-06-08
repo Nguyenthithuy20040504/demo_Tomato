@@ -82,7 +82,7 @@ with st.sidebar:
 
 # ============ Thông tin bệnh ============
 disease_info = {
-    "Tomato___Bacterial_spot": """🍅 1. Tomato___Bacterial_spot  
+    "Tomato___Bacterial_spot": """Tomato___Bacterial_spot  
 **Tên tiếng Việt**: Bệnh đốm vi khuẩn  
 **Nguyên nhân**: Vi khuẩn *Xanthomonas campestris*  
 **Triệu chứng**:  
@@ -92,7 +92,7 @@ disease_info = {
 - Không trồng cây bị bệnh, sử dụng hạt giống sạch.  
 - Phun thuốc gốc đồng định kỳ.""",
 
-    "Tomato___Early_blight": """🍅 2. Tomato___Early_blight  
+    "Tomato___Early_blight": """Tomato___Early_blight  
 **Tên tiếng Việt**: Bệnh mốc sương sớm  
 **Nguyên nhân**: Nấm *Alternaria solani*  
 **Triệu chứng**:  
@@ -102,7 +102,7 @@ disease_info = {
 - Luân canh cây trồng, cắt bỏ lá bệnh.  
 - Phun thuốc trị nấm như Mancozeb.""",
 
-    "Tomato___Late_blight": """🍅 3. Tomato___Late_blight  
+    "Tomato___Late_blight": """Tomato___Late_blight  
 **Tên tiếng Việt**: Bệnh mốc sương muộn  
 **Nguyên nhân**: Nấm *Phytophthora infestans*  
 **Triệu chứng**:  
@@ -112,7 +112,7 @@ disease_info = {
 - Tiêu hủy cây bệnh, không tưới đẫm lá.  
 - Phun thuốc như Metalaxyl.""",
 
-    "Tomato___Leaf_Mold": """🍅 4. Tomato___Leaf_Mold  
+    "Tomato___Leaf_Mold": """Tomato___Leaf_Mold  
 **Tên tiếng Việt**: Bệnh mốc lá  
 **Nguyên nhân**: Nấm *Fulvia fulva*  
 **Triệu chứng**:  
@@ -122,7 +122,7 @@ disease_info = {
 - Cắt tỉa lá bệnh, giữ thông thoáng.  
 - Phun thuốc gốc đồng hoặc Chlorothalonil.""",
 
-    "Tomato___Septoria_leaf_spot": """🍅 5. Tomato___Septoria_leaf_spot  
+    "Tomato___Septoria_leaf_spot": """Tomato___Septoria_leaf_spot  
 **Tên tiếng Việt**: Bệnh đốm lá Septoria  
 **Nguyên nhân**: Nấm *Septoria lycopersici*  
 **Triệu chứng**:  
@@ -132,7 +132,7 @@ disease_info = {
 - Cắt tỉa lá bệnh, tăng độ thông thoáng.  
 - Phun Mancozeb hoặc Chlorothalonil.""",
 
-    "Tomato___Spider_mites Two-spotted_spider_mite": """🍅 6. Tomato___Spider_mites Two-spotted_spider_mite  
+    "Tomato___Spider_mites Two-spotted_spider_mite": """Tomato___Spider_mites Two-spotted_spider_mite  
 **Tên tiếng Việt**: Bệnh nhện đỏ hai chấm  
 **Nguyên nhân**: Nhện *Tetranychus urticae*  
 **Triệu chứng**:  
@@ -142,7 +142,7 @@ disease_info = {
 - Phun thuốc trừ nhện như Abamectin.  
 - Duy trì độ ẩm đất ổn định.""",
 
-    "Tomato___Target_Spot": """🍅 7. Tomato___Target_Spot  
+    "Tomato___Target_Spot": """Tomato___Target_Spot  
 **Tên tiếng Việt**: Bệnh đốm mục tiêu  
 **Nguyên nhân**: Nấm *Corynespora cassiicola*  
 **Triệu chứng**:  
@@ -152,7 +152,7 @@ disease_info = {
 - Loại bỏ lá bệnh, không tưới vào lá.  
 - Phun thuốc nấm phổ rộng.""",
 
-    "Tomato___Tomato_Yellow_Leaf_Curl_Virus": """🍅 8. Tomato___Tomato_Yellow_Leaf_Curl_Virus  
+    "Tomato___Tomato_Yellow_Leaf_Curl_Virus": """Tomato___Tomato_Yellow_Leaf_Curl_Virus  
 **Tên tiếng Việt**: Virus vàng xoăn lá cà chua  
 **Nguyên nhân**: Virus TYLCV, lây truyền qua bọ phấn trắng  
 **Triệu chứng**:  
@@ -163,7 +163,7 @@ disease_info = {
 - Sử dụng giống kháng virus.  
 - Loại bỏ cây bệnh sớm.""",
 
-    "Tomato___Tomato_mosaic_virus": """🍅 9. Tomato___Tomato_mosaic_virus  
+    "Tomato___Tomato_mosaic_virus": """Tomato___Tomato_mosaic_virus  
 **Tên tiếng Việt**: Virus khảm cà chua  
 **Nguyên nhân**: *Tomato mosaic virus* (ToMV)  
 **Triệu chứng**:  
@@ -173,7 +173,7 @@ disease_info = {
 - Không có thuốc trị, cần tiêu hủy cây bệnh.  
 - Dùng giống kháng, khử trùng dụng cụ trồng.""",
 
-    "Tomato___healthy": """🍅 10. Tomato___healthy  
+    "Tomato___healthy": """Tomato___healthy  
 **Tên tiếng Việt**: Cây khỏe mạnh  
 **Mô tả**:  
 - Không có dấu hiệu bệnh.  
