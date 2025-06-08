@@ -203,7 +203,6 @@ if uploaded_file is not None:
 }
 
         # Thêm các bệnh khác nếu cần
-    }
     if predicted_class in disease_info:
         st.info(f"📝 **Thông tin về bệnh:** {disease_info[predicted_class]}")
 
