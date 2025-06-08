@@ -181,31 +181,44 @@ disease_info = {
 - Tiếp tục chăm sóc đúng cách để duy trì sức khỏe."""
 }
 
-# ============ Khu vực chính ============
+# ============ Khu vực chính - Chia 2 cột ============
 if uploaded_file is not None:
-    img = Image.open(uploaded_file)
-    st.image(img, caption="🖼️ Ảnh đã tải lên", use_container_width=True)
+    col1, col2 = st.columns([1, 2])
 
-    # Tiền xử lý ảnh
-    img_resized = img.resize((224, 224))
-    img_array = image.img_to_array(img_resized) / 255.0
-    img_array = np.expand_dims(img_array, axis=0)
+    with col1:
+        img = Image.open(uploaded_file)
+        st.image(img, caption="🖼️ Ảnh đã tải lên", use_container_width=True)
 
-    with st.spinner("🔍 Đang phân tích ảnh..."):
-        prediction = model.predict(img_array)
-        predicted_index = int(np.argmax(prediction))
-        predicted_class = index_to_class[predicted_index]
-        confidence = float(np.max(prediction)) * 100
+    with col2:
+        # Tiền xử lý ảnh
+        img_resized = img.resize((224, 224))
+        img_array = image.img_to_array(img_resized) / 255.0
+        img_array = np.expand_dims(img_array, axis=0)
 
-    # Hiển thị kết quả dự đoán
-    st.markdown(
-        f"<div class='result-box'>✅ <strong>{predicted_class}</strong><br/>🎯 Độ chính xác: {confidence:.2f}%</div>",
-        unsafe_allow_html=True
-    )
+        with st.spinner("🔍 Đang phân tích ảnh..."):
+            prediction = model.predict(img_array)
+            predicted_index = int(np.argmax(prediction))
+            predicted_class = index_to_class[predicted_index]
+            confidence = float(np.max(prediction)) * 100
 
-    # Hiển thị thông tin bệnh nếu có
-    if predicted_class in disease_info:
-        st.info(f"📝 **Thông tin về bệnh:**\n{disease_info[predicted_class]}")
+        # Hiển thị kết quả dự đoán
+        st.markdown(
+            f"<div class='result-box'>✅ <strong>{predicted_class}</strong><br/>🎯 Độ chính xác: {confidence:.2f}%</div>",
+            unsafe_allow_html=True
+        )
+
+        # Hiển thị thông tin bệnh nếu có
+        if predicted_class in disease_info:
+            content_html = disease_info[predicted_class].replace('\n', '<br>')
+            st.markdown(
+                f"""
+                <div style="background-color:#fef9ef;padding:1em;border-radius:10px;margin-top:20px">
+                    📝 <strong>Thông tin về bệnh:</strong><br><br>
+                    {content_html}
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 else:
     st.info("📤 Vui lòng tải lên một ảnh trong thanh bên để bắt đầu.")
 
