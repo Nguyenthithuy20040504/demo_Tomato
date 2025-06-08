@@ -185,9 +185,19 @@ disease_info = {
 if uploaded_file is not None:
     col1, col2 = st.columns([1, 2])
 
-    with col1:
-        img = Image.open(uploaded_file)
-        st.image(img, caption="🖼️ Ảnh đã tải lên", use_container_width=True)
+   with col1:
+    img = Image.open(uploaded_file)
+    # Đặt khung ảnh với chiều cao tối thiểu để cân bằng với cột bên phải
+    st.markdown(
+        f"""
+        <div style="min-height:500px; display: flex; align-items: center; justify-content: center;">
+            <img src="data:image/png;base64,{base64.b64encode(uploaded_file.read()).decode()}" 
+                 style="max-width:100%; height:auto; border-radius:10px;" alt="Ảnh đã tải lên"/>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    uploaded_file.seek(0)  # Reset lại con trỏ đọc file để dùng lại phía dưới nếu cần
 
     with col2:
         # Tiền xử lý ảnh
