@@ -102,7 +102,6 @@ if uploaded_file is not None:
     )
 
     # Mở rộng: thêm mô tả bệnh nếu muốn
-    disease_info = {
         disease_info = {
     "Tomato___Bacterial_spot": """🍅Tomato___Bacterial_spot  
 **Tên tiếng Việt**: Bệnh đốm vi khuẩn  
@@ -202,8 +201,6 @@ if uploaded_file is not None:
 - Lá xanh đều, cây phát triển bình thường.  
 - Tiếp tục chăm sóc đúng cách để duy trì sức khỏe."""
 }
-
-
 
         # Thêm các bệnh khác nếu cần
     }
