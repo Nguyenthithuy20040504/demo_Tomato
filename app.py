@@ -82,7 +82,7 @@ with st.sidebar:
         
 
 # === Main Area ===
-st.markdown("<div class='title'>🍅 Phân loại bệnh lá cà chua bằng VGG16</div>", unsafe_allow_html=True)
+st.markdown("<div class='title'>🍅 Phân loại bệnh lá cà chua bằng mô hình kết hợp giữa ResNet50 (để trích chọn đặc trưng) và mạng Neural (classifier) </div>", unsafe_allow_html=True)
 
 if uploaded_file is not None:
     col1, col2 = st.columns([1, 1])
