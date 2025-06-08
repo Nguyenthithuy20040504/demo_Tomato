@@ -59,7 +59,7 @@ st.markdown("""
 # === Đường dẫn model ===
 MODEL_PATH = "plant_disease_model_update.h5"
 CLASS_INDEX_PATH = "class_indices.json"
-FILE_ID = "1w8OsDqJ84pRmGHcJQMhZUrNDnUP_qbb5"
+FILE_ID = "1qK6cnyVpIwYfuzhC-qtCdisJPmyfaXgs"
 URL = f"https://drive.google.com/uc?id={FILE_ID}"
 
 # === Tải model nếu chưa có ===
