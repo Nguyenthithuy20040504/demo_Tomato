@@ -85,9 +85,7 @@ with st.sidebar:
 st.markdown("<div class='title'>🍅 Phân loại bệnh lá cà chua</div>", unsafe_allow_html=True)
 
 if uploaded_file is not None:
-    col1, col2 = st.columns([1, 1])
-    
-    with col1:
+   
         img = Image.open(uploaded_file)
         st.image(img, caption="🖼️ Ảnh đã chọn", use_container_width=True)
 
@@ -96,7 +94,7 @@ if uploaded_file is not None:
         img_array = image.img_to_array(img_resized) / 255.0
         img_array = np.expand_dims(img_array, axis=0)
 
-    with col2:
+
         with st.spinner("🔍 Đang dự đoán..."):
             prediction = model.predict(img_array)
             predicted_index = int(np.argmax(prediction))
