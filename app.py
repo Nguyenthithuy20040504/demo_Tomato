@@ -204,20 +204,8 @@ if uploaded_file is not None:
     )
 
     # Hiển thị thông tin bệnh nếu có
-    if predicted_class in disease_info:
-    # Xử lý xuống dòng để hiển thị HTML chính xác
-    content_html = disease_info[predicted_class].replace('\n', '<br>')
-
-    # Hiển thị với nền màu và hỗ trợ HTML
-    st.markdown(
-        f"""
-        <div style="background-color:#e8f4fd;padding:1em;border-radius:10px">
-            📝 <strong>Thông tin về bệnh:</strong><br><br>
-            {content_html}
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+     if predicted_class in disease_info:
+        st.info(f"📝 **Thông tin về bệnh:**\n{disease_info[predicted_class]}")
 else:
     st.info("📤 Vui lòng tải lên một ảnh trong thanh bên để bắt đầu.")
 
