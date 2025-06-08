@@ -77,7 +77,7 @@ with st.sidebar:
     uploaded_file = st.file_uploader("Chọn ảnh (JPG/PNG)", type=["jpg", "jpeg", "png"])
     st.markdown("---")
     st.markdown("📌 Định dạng hỗ trợ: .jpg, .jpeg, .png")
-    st.markdown("🧠 Mô hình: EfficientNet (cập nhật)")
+    st.markdown("🧠 Mô hình:  ResNet50 kết hợp classifier ")
     st.markdown("👨‍💻 Dành cho mục đích nghiên cứu và giáo dục.")
 
 # ============ Thông tin bệnh ============
@@ -210,4 +210,4 @@ else:
     st.info("📤 Vui lòng tải lên một ảnh trong thanh bên để bắt đầu.")
 
 # ============ Footer ============
-st.markdown("<div class='footer'>🌱 Ứng dụng demo - Được phát triển bởi Nhóm AI Nông Nghiệp - 2025</div>", unsafe_allow_html=True)
+st.markdown("<div class='footer'>🌱 Ứng dụng demo - Được phát triển bởi Nhóm 6 AI - 2025</div>", unsafe_allow_html=True)
