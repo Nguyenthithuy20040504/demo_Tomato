@@ -205,8 +205,15 @@ if uploaded_file is not None:
 
     # Hiển thị thông tin bệnh nếu có
     if predicted_class in disease_info:
-        st.info(f"📝 **Thông tin về bệnh:**\n{disease_info[predicted_class]}")
-
+        st.markdown(
+        f"""
+        <div style="background-color:#e8f4fd;padding:1em;border-radius:10px">
+        📝 <strong>Thông tin về bệnh:</strong><br><br>
+        {disease_info[predicted_class].replace('\n', '<br>')}
+        </div>
+        """,
+        unsafe_allow_html=True
+        )
 else:
     st.info("📤 Vui lòng tải lên một ảnh trong thanh bên để bắt đầu.")
 
