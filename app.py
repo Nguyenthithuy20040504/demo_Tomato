@@ -22,6 +22,7 @@ st.markdown("""
         }
         .main-title {
             font-size: 40px;
+            background-color: #d1e7dd;
             color: #2d6a4f;
             text-align: center;
             margin-bottom: 0px;
@@ -214,4 +215,4 @@ else:
     st.info("📤 Vui lòng tải lên một ảnh trong thanh bên để bắt đầu.")
 
 # ============ Footer ============
-st.markdown("<div class='footer'>🌱 Ứng dụng demo - Được phát triển bởi Nhóm 6 AI - 2025</div>", unsafe_allow_html=True)
+st.markdown("<div class='footer'>🌱 Ứng dụng demo - Được phát triển bởi Nhóm 6 AI - 2025 </div>", unsafe_allow_html=True)
