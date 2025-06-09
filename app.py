@@ -21,13 +21,13 @@ st.markdown("""
             background-color: #f4f6f7;
         }
         .main-title {
-            font-size: 40px;
+            font-size: 60px;
             color: #2d6a4f;
             text-align: center;
             margin-bottom: 0px;
         }
         .subtitle {
-            font-size: 18px;
+            font-size: 38px;
             color: #6c757d;
             text-align: center;
             margin-bottom: 40px;
@@ -44,7 +44,7 @@ st.markdown("""
         }
         .footer {
             text-align: center;
-            font-size: 14px;
+            font-size: 38px;
             color: gray;
             margin-top: 50px;
         }
