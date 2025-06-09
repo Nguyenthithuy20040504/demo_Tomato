@@ -27,7 +27,7 @@ st.markdown("""
             margin-bottom: 0px;
         }
         .subtitle {
-            font-size: 38px;
+            font-size: 20px;
             color: #6c757d;
             text-align: center;
             margin-bottom: 40px;
@@ -44,7 +44,7 @@ st.markdown("""
         }
         .footer {
             text-align: center;
-            font-size: 38px;
+            font-size: 20px;
             color: gray;
             margin-top: 50px;
         }
