@@ -195,6 +195,7 @@ if uploaded_file is not None:
         img_resized = img.resize((224, 224))
         img_array = image.img_to_array(img_resized)
         img_array = np.expand_dims(img_array, axis=0)
+        img_array = preprocess_input(img_array) 
 
         with st.spinner("🔍 Đang phân tích ảnh..."):
             prediction = model.predict(img_array)
