@@ -49,7 +49,6 @@ st.markdown("""
 
 # ============ Tải mô hình ============ #
 MODEL_PATH = "plant_disease_model_update.h5"
-FEATURE_MODEL_PATH = "feature_extractor.h5"
 CLASS_INDEX_PATH = "class_indices.json"
 
 # Tải mô hình từ Google Drive nếu chưa có
@@ -64,6 +63,7 @@ feature_extractor = tf.keras.applications.ResNet50(
     weights="imagenet", include_top=False, input_shape=(224, 224, 3)
 )
 global_pooling = tf.keras.layers.GlobalAveragePooling2D()
+
 # Load classifier model
 classifier_model = tf.keras.models.load_model(MODEL_PATH)
 
@@ -81,120 +81,29 @@ with st.sidebar:
     st.image("logo.png", use_container_width=True)
     st.markdown("## 📥 Tải ảnh lá cà chua")
     uploaded_file = st.file_uploader("Chọn ảnh (JPG/PNG)", type=["jpg", "jpeg", "png"])
+
+    st.markdown("## 📷 Hoặc chụp ảnh từ webcam")
+    camera_image = st.camera_input("Chụp ảnh lá cà chua")
+
     st.markdown("---")
     st.markdown("📌 Định dạng hỗ trợ: .jpg, .jpeg, .png")
     st.markdown("🧠 Mô hình: ResNet50 + Classifier")
     st.markdown("👨‍💻 Dành cho mục đích nghiên cứu và giáo dục.")
 
-# ============ Dữ liệu mô tả bệnh ============ #
+# ============ Dữ liệu mô tả bệnh (nếu có) ============ #
 disease_info = {
-    "Tomato___Bacterial_spot": """Tomato___Bacterial_spot  
-**Tên tiếng Việt**: Bệnh đốm vi khuẩn  
-**Nguyên nhân**: Vi khuẩn *Xanthomonas campestris*  
-**Triệu chứng**:  
-- Đốm tròn nhỏ màu nâu hoặc đen trên lá, thân và quả.  
-- Lá có thể cháy viền và rụng sớm.  
-**Xử lý**:  
-- Không trồng cây bị bệnh, sử dụng hạt giống sạch.  
-- Phun thuốc gốc đồng định kỳ.""",
-
-    "Tomato___Early_blight": """Tomato___Early_blight  
-**Tên tiếng Việt**: Bệnh mốc sương sớm  
-**Nguyên nhân**: Nấm *Alternaria solani*  
-**Triệu chứng**:  
-- Đốm tròn màu nâu có vòng tròn đồng tâm.  
-- Lá vàng, rụng từ dưới lên.  
-**Xử lý**:  
-- Luân canh cây trồng, cắt bỏ lá bệnh.  
-- Phun thuốc trị nấm như Mancozeb.""",
-
-    "Tomato___Late_blight": """Tomato___Late_blight  
-**Tên tiếng Việt**: Bệnh mốc sương muộn  
-**Nguyên nhân**: Nấm *Phytophthora infestans*  
-**Triệu chứng**:  
-- Vết nước trên lá lan rộng, có mốc trắng dưới mặt lá.  
-- Quả bị thối nhũn, cây nhanh chết.  
-**Xử lý**:  
-- Tiêu hủy cây bệnh, không tưới đẫm lá.  
-- Phun thuốc như Metalaxyl.""",
-
-    "Tomato___Leaf_Mold": """Tomato___Leaf_Mold  
-**Tên tiếng Việt**: Bệnh mốc lá  
-**Nguyên nhân**: Nấm *Fulvia fulva*  
-**Triệu chứng**:  
-- Mặt trên lá có đốm vàng, mặt dưới có lớp mốc ô liu.  
-- Lá héo nhanh khi trời ẩm.  
-**Xử lý**:  
-- Cắt tỉa lá bệnh, giữ thông thoáng.  
-- Phun thuốc gốc đồng hoặc Chlorothalonil.""",
-
-    "Tomato___Septoria_leaf_spot": """Tomato___Septoria_leaf_spot  
-**Tên tiếng Việt**: Bệnh đốm lá Septoria  
-**Nguyên nhân**: Nấm *Septoria lycopersici*  
-**Triệu chứng**:  
-- Đốm tròn nhỏ, màu xám nâu, có viền sẫm.  
-- Thường xuất hiện ở lá dưới trước.  
-**Xử lý**:  
-- Cắt tỉa lá bệnh, tăng độ thông thoáng.  
-- Phun Mancozeb hoặc Chlorothalonil.""",
-
-    "Tomato___Spider_mites Two-spotted_spider_mite": """Tomato___Spider_mites Two-spotted_spider_mite  
-**Tên tiếng Việt**: Bệnh nhện đỏ hai chấm  
-**Nguyên nhân**: Nhện *Tetranychus urticae*  
-**Triệu chứng**:  
-- Chấm vàng li ti trên lá, lá khô và rụng.  
-- Mạng tơ mỏng dưới mặt lá.  
-**Xử lý**:  
-- Phun thuốc trừ nhện như Abamectin.  
-- Duy trì độ ẩm đất ổn định.""",
-
-    "Tomato___Target_Spot": """Tomato___Target_Spot  
-**Tên tiếng Việt**: Bệnh đốm mục tiêu  
-**Nguyên nhân**: Nấm *Corynespora cassiicola*  
-**Triệu chứng**:  
-- Đốm tròn lớn, có vòng tròn đồng tâm.  
-- Thường lan rộng khi ẩm độ cao.  
-**Xử lý**:  
-- Loại bỏ lá bệnh, không tưới vào lá.  
-- Phun thuốc nấm phổ rộng.""",
-
-    "Tomato___Tomato_Yellow_Leaf_Curl_Virus": """Tomato___Tomato_Yellow_Leaf_Curl_Virus  
-**Tên tiếng Việt**: Virus vàng xoăn lá cà chua  
-**Nguyên nhân**: Virus TYLCV, lây truyền qua bọ phấn trắng  
-**Triệu chứng**:  
-- Lá xoăn, cuộn vào trong.  
-- Cây còi cọc, chậm lớn, không ra hoa.  
-**Xử lý**:  
-- Phòng bọ phấn bằng lưới chắn, bẫy vàng.  
-- Sử dụng giống kháng virus.  
-- Loại bỏ cây bệnh sớm.""",
-
-    "Tomato___Tomato_mosaic_virus": """Tomato___Tomato_mosaic_virus  
-**Tên tiếng Việt**: Virus khảm cà chua  
-**Nguyên nhân**: *Tomato mosaic virus* (ToMV)  
-**Triệu chứng**:  
-- Lá loang lổ màu xanh nhạt – đậm.  
-- Biến dạng lá, cây kém phát triển.  
-**Xử lý**:  
-- Không có thuốc trị, cần tiêu hủy cây bệnh.  
-- Dùng giống kháng, khử trùng dụng cụ trồng.""",
-
-    "Tomato___healthy": """Tomato___healthy  
-**Tên tiếng Việt**: Cây khỏe mạnh  
-**Mô tả**:  
-- Không có dấu hiệu bệnh.  
-- Lá xanh đều, cây phát triển bình thường.  
-- Tiếp tục chăm sóc đúng cách để duy trì sức khỏe."""
-    # ... như bạn đã gửi ở trên (có thể copy nguyên khối vào đây)
+    # Ví dụ: "Tomato___Late_blight": "Là một bệnh nấm gây ra các đốm nâu trên lá..."
 }
 
 # ============ Xử lý ảnh & Dự đoán ============ #
-if uploaded_file is not None:
+if uploaded_file is not None or camera_image is not None:
+    image_source = uploaded_file if uploaded_file is not None else camera_image
+
     col1, col2 = st.columns([1, 2])
 
     with col1:
-        img = Image.open(uploaded_file)
-        st.image(img, caption="🖼️ Ảnh đã tải lên", use_container_width=True)
+        img = Image.open(image_source)
+        st.image(img, caption="🖼️ Ảnh được sử dụng", use_container_width=True)
 
     with col2:
         # Tiền xử lý ảnh
@@ -220,7 +129,7 @@ if uploaded_file is not None:
         if predicted_class in disease_info:
             st.info(f"📝 **Thông tin về bệnh:**\n{disease_info[predicted_class]}")
 else:
-    st.info("📤 Vui lòng tải lên một ảnh trong thanh bên để bắt đầu.")
+    st.info("📤 Vui lòng tải lên ảnh hoặc chụp ảnh để bắt đầu.")
 
 # ============ Footer ============ #
 st.markdown("<div class='footer'>🌱 Ứng dụng demo - Được phát triển bởi Nhóm 6 AI - 2025</div>", unsafe_allow_html=True)
