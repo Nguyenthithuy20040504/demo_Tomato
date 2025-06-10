@@ -59,13 +59,23 @@ if not os.path.exists(MODEL_PATH):
         gdown.download(URL, MODEL_PATH, quiet=False)
 
 # Load feature extractor (ResNet50 base)
-feature_extractor = tf.keras.applications.ResNet50(
-    weights="imagenet", include_top=False, input_shape=(224, 224, 3)
-)
-global_pooling = tf.keras.layers.GlobalAveragePooling2D()
+@st.cache_resource
+def load_feature_extractor():
+    base_model = tf.keras.applications.ResNet50(
+        weights="imagenet", include_top=False, input_shape=(224, 224, 3)
+    )
+    global_pooling = tf.keras.layers.GlobalAveragePooling2D()
+    return base_model, global_pooling
+
+feature_extractor, global_pooling = load_feature_extractor()
 
 # Load classifier model
-classifier_model = tf.keras.models.load_model(MODEL_PATH)
+@st.cache_resource
+def load_classifier():
+    return tf.keras.models.load_model(MODEL_PATH)
+
+classifier_model = load_classifier()
+
 
 # Load class index
 with open(CLASS_INDEX_PATH, "r") as f:
