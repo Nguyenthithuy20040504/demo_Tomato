@@ -116,7 +116,7 @@ with st.sidebar:
         st.session_state.uploaded_file = None
 
     st.markdown("---")
-    st.markdown("📌 Định dạng hỗ trợ: .jpg, .jpeg, .png")
+    st.markdown("📌 Định dạng hỗ trợ: .jpg, .png")
     st.markdown("🧠 Mô hình: ResNet50 + Classifier")
     st.markdown("👨‍💻 Dành cho mục đích nghiên cứu và giáo dục.")
 
