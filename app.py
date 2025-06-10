@@ -195,7 +195,8 @@ if uploaded_file is not None:
         img_resized = img.resize((224, 224))
         img_array = image.img_to_array(img_resized)
         img_array = np.expand_dims(img_array, axis=0)
-        img_array = img_array.astype('float32')
+        img_array = np.transpose(img_array, (0, 3, 1, 2))  
+        img_array = img_array.astype('float32') / 255.0 
        
 
         with st.spinner("🔍 Đang phân tích ảnh..."):
