@@ -193,7 +193,7 @@ if uploaded_file is not None:
         # Tiền xử lý ảnh
         img = img.convert("RGB") 
         img_resized = img.resize((224, 224))
-        img_array = image.img_to_array(img_resized) / 255.0
+        img_array = image.img_to_array(img_resized)
         img_array = np.expand_dims(img_array, axis=0)
 
         with st.spinner("🔍 Đang phân tích ảnh..."):
