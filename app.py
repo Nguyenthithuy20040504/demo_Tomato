@@ -80,15 +80,36 @@ st.markdown("<div class='subtitle'>Nhận diện các bệnh phổ biến trên 
 with st.sidebar:
     st.image("logo.png", use_container_width=True)
     st.markdown("## 📥 Tải ảnh lá cà chua")
-    uploaded_file = st.file_uploader("Chọn ảnh (JPG/PNG)", type=["jpg", "jpeg", "png"])
 
-    st.markdown("## 📷 Hoặc chụp ảnh từ webcam")
-    camera_image = st.camera_input("Chụp ảnh lá cà chua")
+    # Khởi tạo biến trạng thái
+    if "use_camera" not in st.session_state:
+        st.session_state.use_camera = False
+    if "uploaded_file" not in st.session_state:
+        st.session_state.uploaded_file = None
+    if "camera_image" not in st.session_state:
+        st.session_state.camera_image = None
+
+    # Hai nút chọn phương thức
+    method = st.radio("Chọn phương thức", ["📂 Tải ảnh", "📸 Chụp ảnh"])
+
+    if method == "📂 Tải ảnh":
+        # Nếu chọn tải ảnh, reset camera
+        st.session_state.use_camera = False
+        uploaded_file = st.file_uploader("Chọn ảnh (JPG/PNG)", type=["jpg", "jpeg", "png"])
+        st.session_state.uploaded_file = uploaded_file
+        st.session_state.camera_image = None
+    else:
+        # Nếu chọn camera, reset ảnh upload
+        st.session_state.use_camera = True
+        camera_image = st.camera_input("Chụp ảnh lá cà chua")
+        st.session_state.camera_image = camera_image
+        st.session_state.uploaded_file = None
 
     st.markdown("---")
     st.markdown("📌 Định dạng hỗ trợ: .jpg, .jpeg, .png")
     st.markdown("🧠 Mô hình: ResNet50 + Classifier")
     st.markdown("👨‍💻 Dành cho mục đích nghiên cứu và giáo dục.")
+
 
 # ============ Dữ liệu mô tả bệnh (nếu có) ============ #
 disease_info = {
@@ -96,9 +117,9 @@ disease_info = {
 }
 
 # ============ Xử lý ảnh & Dự đoán ============ #
-if uploaded_file is not None or camera_image is not None:
-    image_source = uploaded_file if uploaded_file is not None else camera_image
+image_source = st.session_state.camera_image if st.session_state.use_camera else st.session_state.uploaded_file
 
+if image_source is not None:
     col1, col2 = st.columns([1, 2])
 
     with col1:
@@ -106,7 +127,6 @@ if uploaded_file is not None or camera_image is not None:
         st.image(img, caption="🖼️ Ảnh được sử dụng", use_container_width=True)
 
     with col2:
-        # Tiền xử lý ảnh
         img = img.convert("RGB")
         img_resized = img.resize((224, 224))
         img_array = image.img_to_array(img_resized)
@@ -130,6 +150,7 @@ if uploaded_file is not None or camera_image is not None:
             st.info(f"📝 **Thông tin về bệnh:**\n{disease_info[predicted_class]}")
 else:
     st.info("📤 Vui lòng tải lên ảnh hoặc chụp ảnh để bắt đầu.")
+
 
 # ============ Footer ============ #
 st.markdown("<div class='footer'>🌱 Ứng dụng demo - Được phát triển bởi Nhóm 6 AI - 2025</div>", unsafe_allow_html=True)
