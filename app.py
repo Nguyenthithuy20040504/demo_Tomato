@@ -146,7 +146,7 @@ if image_source is not None:
             confidence = float(np.max(prediction)) * 100
 
         # Ngưỡng confidence để phát hiện ảnh không phải lá
-        CONFIDENCE_THRESHOLD = 40.0
+        CONFIDENCE_THRESHOLD = 60.0
 
         if confidence < CONFIDENCE_THRESHOLD:
             st.markdown(
